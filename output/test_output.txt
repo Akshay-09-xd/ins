@@ -1,0 +1,24 @@
+test_TC01_valid_otp_accepted (test_otp_auth.TestOTP.test_TC01_valid_otp_accepted) ... ok
+test_TC02_otp_is_six_digits_and_changes_every_login (test_otp_auth.TestOTP.test_TC02_otp_is_six_digits_and_changes_every_login) ... ok
+test_TC03_replayed_otp_rejected (test_otp_auth.TestOTP.test_TC03_replayed_otp_rejected) ... ok
+test_TC04_otp_not_valid_for_other_challenge (test_otp_auth.TestOTP.test_TC04_otp_not_valid_for_other_challenge) ... ok
+test_TC05_expired_otp_rejected (test_otp_auth.TestOTP.test_TC05_expired_otp_rejected) ... ok
+test_TC06_edge_otp_at_exact_expiry_accepted (test_otp_auth.TestOTP.test_TC06_edge_otp_at_exact_expiry_accepted) ... ok
+test_TC07_edge_one_second_after_expiry_rejected (test_otp_auth.TestOTP.test_TC07_edge_one_second_after_expiry_rejected) ... ok
+test_TC08_wrong_otp_rejected (test_otp_auth.TestOTP.test_TC08_wrong_otp_rejected) ... ok
+test_TC09_malformed_otp_rejected (test_otp_auth.TestOTP.test_TC09_malformed_otp_rejected) ... ok
+test_TC10_tampered_expiry_rejected (test_otp_auth.TestOTP.test_TC10_tampered_expiry_rejected) ... ok
+test_TC11_attempt_limit_revokes_challenge (test_otp_auth.TestOTP.test_TC11_attempt_limit_revokes_challenge) ... ok
+test_TC12_account_lockout_after_repeated_failures (test_otp_auth.TestOTP.test_TC12_account_lockout_after_repeated_failures) ... ok
+test_TC13_other_users_challenge_rejected (test_otp_auth.TestOTP.test_TC13_other_users_challenge_rejected) ... ok
+test_TC14_token_requires_pin (test_otp_auth.TestOTP.test_TC14_token_requires_pin) ... ok
+test_TC15_server_never_stores_plain_otp (test_otp_auth.TestOTP.test_TC15_server_never_stores_plain_otp) ... ok
+test_TC16_totp_single_use_within_window (test_otp_auth.TestOTP.test_TC16_totp_single_use_within_window) ... ok
+test_TC17_totp_expires_after_window (test_otp_auth.TestOTP.test_TC17_totp_expires_after_window) ... ok
+test_TC18_totp_clock_drift_tolerated (test_otp_auth.TestOTP.test_TC18_totp_clock_drift_tolerated) ... ok
+test_TC19_hotp_deterministic (test_otp_auth.TestOTP.test_TC19_hotp_deterministic) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 1.221s
+
+OK

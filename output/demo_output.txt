@@ -1,0 +1,74 @@
+
+================================================================
+ 1. Registration
+================================================================
+User 'alice' registered; 256-bit secret K shared with her token.
+
+================================================================
+ 2. Normal login (challenge-response)
+================================================================
+Server -> Alice : challenge=26b9d1e534228de7f3b0b48eeec4b0af  counter=1  valid for 60s
+Alice unlocks token with PIN 4821: True
+Token displays OTP            : 797037
+Server verifies               : ACCEPTED (valid, fresh and unused OTP)
+
+================================================================
+ 3. Replay attack - same OTP sent again
+================================================================
+Attacker resubmits captured OTP: REJECTED (unknown or already-used OTP (replay))
+
+================================================================
+ 4. Expired OTP
+================================================================
+OTP 314728 issued; user waits 61 seconds before submitting...
+Server verifies               : REJECTED (OTP expired)
+
+================================================================
+ 5. Wrong / malformed OTP and attempt limit
+================================================================
+Guess 000000                  : REJECTED (incorrect OTP; 2 attempt(s) left)
+Guess 12345                   : REJECTED (malformed OTP; 1 attempt(s) left)
+Guess 999999                  : REJECTED (incorrect OTP; attempt limit 3 reached, challenge revoked; account locked for 300 s)
+Correct OTP 494178 now        : REJECTED (account locked)
+
+================================================================
+ 6. Tampered challenge (attacker extends the expiry time)
+================================================================
+OTP computed over forged expiry: 355335
+Server verifies               : REJECTED (incorrect OTP; 2 attempt(s) left)
+
+================================================================
+ 7. Stolen token without PIN
+================================================================
+Unlock with wrong PIN 0000    : False
+Token refuses                 : token is locked - enter the PIN first
+
+================================================================
+ 8. Time-based OTP (TOTP) mode with single use
+================================================================
+Token shows TOTP              : 143433
+First use                     : ACCEPTED (valid TOTP, time-step 58666668)
+Second use in same window     : REJECTED (TOTP already used (replay))
+Next 30-second step TOTP      : 213970
+Verify                        : ACCEPTED (valid TOTP, time-step 58666669)
+Old TOTP 213970 after 120 s   : REJECTED (incorrect or expired TOTP)
+
+================================================================
+ 9. Brute force -> account lockout
+================================================================
+Attempt 1                     : REJECTED (incorrect OTP; 2 attempt(s) left)
+Attempt 2                     : REJECTED (incorrect OTP; 2 attempt(s) left)
+Attempt 3                     : REJECTED (incorrect OTP; 2 attempt(s) left)
+Attempt 4                     : REJECTED (incorrect OTP; 2 attempt(s) left)
+Attempt 5                     : REJECTED (incorrect OTP; 2 attempt(s) left; account locked for 300 s)
+New challenge request         : refused, account locked for 300 s
+
+================================================================
+ Audit log (last 6 events)
+================================================================
+  t=1760000211  challenge stXcVlZQ85q35qJv issued, expires 1760000271
+  t=1760000211  FAIL incorrect OTP; 2 attempt(s) left
+  t=1760000211  challenge OGhJKZxF68HaoVFo issued, expires 1760000271
+  t=1760000211  FAIL incorrect OTP; 2 attempt(s) left
+  t=1760000211  challenge iqYQfYOgutglQxd9 issued, expires 1760000271
+  t=1760000211  FAIL incorrect OTP; 2 attempt(s) left; account locked for 300 s
